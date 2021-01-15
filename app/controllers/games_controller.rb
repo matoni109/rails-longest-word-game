@@ -16,10 +16,9 @@ class GamesController < ApplicationController
     # binding.pry
 
     # @session_score = session[:passed_variable2]
-    # @this_score = 0
+    @passed_score = session[:passed_score] ## this works
     # @total_score = @session_score || 0
-
-
+    raise
     @attempt = params[:word] || ""
     @response = ""
     url = "https://wagon-dictionary.herokuapp.com/#{@attempt}"
@@ -33,7 +32,6 @@ class GamesController < ApplicationController
     attempt_count = @attempt.upcase.split("").each_with_object(Hash.new(0)){ |item, hash| hash[item] += 1 }
     # end code from stack
     #binding.pry
-
     if check.chars.uniq.all?{|char| grid_check.include?(char)} != true || @attempt.empty? == true
       @attempt.empty? ? @attempt = "BLANK" : @attempt = @attempt
 
@@ -47,11 +45,12 @@ class GamesController < ApplicationController
 
       # @session_score += @this_score
 
-      # session[:passed_variable2] = @session_score
+      session[:passed_score] = @this_score
 
       # binding.pry
 
       @response = "<b>YAY #{@attempt.upcase}</b> is an English word :) "
+
     end
 
     return @response && @total_score
