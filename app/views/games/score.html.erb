@@ -1,0 +1,12 @@
+<h1>Result</h1>
+<div class="container">
+    <h4>Your Attempt =
+        <%= @attempt %>
+    </h4>
+    <p>
+        <%== @total_score %><br>
+        <%== @session_score %><br>
+        <%== @response %><br>
+        <%= link_to "play again", root_path, class: "linky" %>
+    </p>
+</div>
